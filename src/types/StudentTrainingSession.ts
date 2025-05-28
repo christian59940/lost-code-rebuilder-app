@@ -10,4 +10,7 @@ export interface StudentTrainingSession {
   status: 'upcoming' | 'completed' | 'absent' | 'present';
   description?: string;
   hasSignedPresence?: boolean;
+  willBeAbsent?: boolean;
+  canJustifyAbsence?: boolean;
+  justificationDocument?: string;
 }
