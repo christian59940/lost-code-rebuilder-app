@@ -9,6 +9,8 @@ import { AuthGuard } from "@/components/auth/AuthGuard";
 import Index from "./pages/Index";
 import Login from "./pages/Login";
 import Dashboard from "./pages/Dashboard";
+import Automations from "./pages/Automations";
+import Alerts from "./pages/Alerts";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -26,6 +28,16 @@ const App = () => (
             <Route path="/dashboard" element={
               <AuthGuard>
                 <Dashboard />
+              </AuthGuard>
+            } />
+            <Route path="/automations" element={
+              <AuthGuard>
+                <Automations />
+              </AuthGuard>
+            } />
+            <Route path="/alerts" element={
+              <AuthGuard>
+                <Alerts />
               </AuthGuard>
             } />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
