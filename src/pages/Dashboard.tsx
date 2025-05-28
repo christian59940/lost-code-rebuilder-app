@@ -253,7 +253,7 @@ const Dashboard = () => {
           { value: 'settings', label: 'Paramètres', icon: Settings },
         ];
       
-      case 'gestionnaire':
+      case 'gestionnaire_administratif':
         return [
           ...commonTabs,
           { value: 'sessions', label: 'Sessions', icon: Calendar },
@@ -628,7 +628,7 @@ const Dashboard = () => {
           </>
         )}
 
-        {(user?.role === 'formateur' || user?.role === 'gestionnaire') && (
+        {(user?.role === 'formateur' || user?.role === 'gestionnaire_administratif') && (
           <>
             <TabsContent value="my-sessions" className="space-y-6">
               <Card>
@@ -663,7 +663,7 @@ const Dashboard = () => {
           </>
         )}
 
-        {user?.role === 'gestionnaire' && (
+        {user?.role === 'gestionnaire_administratif' && (
           <TabsContent value="reports" className="space-y-6">
             <Card>
               <CardHeader>
