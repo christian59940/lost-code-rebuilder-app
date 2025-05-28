@@ -16,6 +16,7 @@ import StudentSessions from "./pages/StudentSessions";
 import TrainerSessions from "./pages/TrainerSessions";
 import Users from "./pages/Users";
 import Messages from "./pages/Messages";
+import Participants from "./pages/Participants";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -68,6 +69,11 @@ const App = () => (
             <Route path="/messages" element={
               <AuthGuard>
                 <Messages />
+              </AuthGuard>
+            } />
+            <Route path="/participants" element={
+              <AuthGuard>
+                <Participants />
               </AuthGuard>
             } />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
