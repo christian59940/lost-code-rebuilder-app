@@ -10,4 +10,5 @@ export interface TrainingSession {
   status: 'upcoming' | 'completed' | 'cancelled';
   description?: string;
   participants?: string[];
+  trainerPresence?: 'present' | 'absent' | 'pending';
 }
