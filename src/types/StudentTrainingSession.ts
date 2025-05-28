@@ -3,15 +3,14 @@ export interface StudentTrainingSession {
   id: string;
   title: string;
   date: string;
-  startTime: string;
-  endTime: string;
-  trainer: string;
+  timeSlot: 'morning' | 'afternoon' | 'full-day';
   location: string;
-  status: 'upcoming' | 'completed' | 'absent' | 'present';
-  description?: string;
-  hasSignedPresence?: boolean;
+  trainer: string;
+  status: 'upcoming' | 'completed' | 'cancelled';
+  // Pour les formations passées : basé sur si l'apprenant a signé sa présence
+  hasSignedPresence?: boolean; // true = a signé, false = n'a pas signé, undefined = formation à venir
+  // Pour les formations à venir : possibilité d'indiquer une absence prévisionnelle
   willBeAbsent?: boolean;
-  canJustifyAbsence?: boolean;
   justificationDocument?: string;
-  timeSlot?: 'morning' | 'afternoon' | 'full-day';
+  canJustifyAbsence?: boolean;
 }
