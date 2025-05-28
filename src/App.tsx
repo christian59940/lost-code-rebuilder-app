@@ -17,6 +17,7 @@ import TrainerSessions from "./pages/TrainerSessions";
 import Users from "./pages/Users";
 import Messages from "./pages/Messages";
 import Participants from "./pages/Participants";
+import Signature from "./pages/Signature";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -31,6 +32,7 @@ const App = () => (
           <Routes>
             <Route path="/" element={<Index />} />
             <Route path="/login" element={<Login />} />
+            <Route path="/signature/:sessionId" element={<Signature />} />
             <Route path="/dashboard" element={
               <AuthGuard>
                 <Dashboard />
