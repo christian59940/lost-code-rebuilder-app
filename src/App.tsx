@@ -18,6 +18,7 @@ import TimeTracking from "./pages/TimeTracking";
 import Users from "./pages/Users";
 import Messages from "./pages/Messages";
 import Participants from "./pages/Participants";
+import Trainers from "./pages/Trainers";
 import Signature from "./pages/Signature";
 import NotFound from "./pages/NotFound";
 
@@ -82,6 +83,11 @@ const App = () => (
             <Route path="/participants" element={
               <AuthGuard>
                 <Participants />
+              </AuthGuard>
+            } />
+            <Route path="/trainers" element={
+              <AuthGuard>
+                <Trainers />
               </AuthGuard>
             } />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
