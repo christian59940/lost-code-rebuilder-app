@@ -19,6 +19,7 @@ import Users from "./pages/Users";
 import Messages from "./pages/Messages";
 import Participants from "./pages/Participants";
 import Trainers from "./pages/Trainers";
+import TrainingCatalog from "./pages/TrainingCatalog";
 import Signature from "./pages/Signature";
 import NotFound from "./pages/NotFound";
 
@@ -88,6 +89,11 @@ const App = () => (
             <Route path="/trainers" element={
               <AuthGuard>
                 <Trainers />
+              </AuthGuard>
+            } />
+            <Route path="/training-catalog" element={
+              <AuthGuard>
+                <TrainingCatalog />
               </AuthGuard>
             } />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
