@@ -4,7 +4,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { AuthProvider } from './contexts/AuthContext';
 import { SidebarProvider } from '@/components/ui/sidebar';
-import AuthGuard from './components/auth/AuthGuard';
+import { AuthGuard } from './components/auth/AuthGuard';
 import Index from './pages/Index';
 import Login from './pages/Login';
 import Dashboard from './pages/Dashboard';
