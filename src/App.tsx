@@ -11,6 +11,10 @@ import Login from "./pages/Login";
 import Dashboard from "./pages/Dashboard";
 import Automations from "./pages/Automations";
 import Alerts from "./pages/Alerts";
+import Sessions from "./pages/Sessions";
+import StudentSessions from "./pages/StudentSessions";
+import TrainerSessions from "./pages/TrainerSessions";
+import Users from "./pages/Users";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -38,6 +42,26 @@ const App = () => (
             <Route path="/alerts" element={
               <AuthGuard>
                 <Alerts />
+              </AuthGuard>
+            } />
+            <Route path="/sessions" element={
+              <AuthGuard>
+                <Sessions />
+              </AuthGuard>
+            } />
+            <Route path="/student-sessions" element={
+              <AuthGuard>
+                <StudentSessions />
+              </AuthGuard>
+            } />
+            <Route path="/trainer-sessions" element={
+              <AuthGuard>
+                <TrainerSessions />
+              </AuthGuard>
+            } />
+            <Route path="/users" element={
+              <AuthGuard>
+                <Users />
               </AuthGuard>
             } />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
