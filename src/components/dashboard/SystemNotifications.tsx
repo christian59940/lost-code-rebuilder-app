@@ -1,6 +1,7 @@
 
 import { SystemAlert } from '@/components/alerts/SystemAlert';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { AspectRatio } from '@/components/ui/aspect-ratio';
 import { Bell } from 'lucide-react';
 
 export const SystemNotifications = () => {
@@ -30,6 +31,16 @@ export const SystemNotifications = () => {
           title="Mise à jour disponible"
           description="Une nouvelle version de l'application est disponible. Redémarrez pour appliquer les mises à jour."
         />
+        
+        <div className="mt-6">
+          <h4 className="text-sm font-medium mb-3">Aperçu du système</h4>
+          <AspectRatio ratio={16 / 9} className="bg-muted rounded-lg">
+            <div className="flex items-center justify-center h-full text-muted-foreground">
+              <Bell className="h-8 w-8" />
+              <span className="ml-2">Zone de contenu média</span>
+            </div>
+          </AspectRatio>
+        </div>
       </CardContent>
     </Card>
   );
