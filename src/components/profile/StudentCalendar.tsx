@@ -13,8 +13,7 @@ const studentUpcomingSessions: StudentTrainingSession[] = [
     title: 'Formation React Avancé',
     trainer: 'Marie Formatrice',
     date: '2024-01-16',
-    startTime: '09:00',
-    endTime: '17:00',
+    timeSlot: 'full-day',
     location: 'Salle A',
     status: 'upcoming',
     hasSignedPresence: false,
@@ -24,8 +23,7 @@ const studentUpcomingSessions: StudentTrainingSession[] = [
     title: 'Workshop UX/UI Design',
     trainer: 'Sophie Designeuse',
     date: '2024-01-18',
-    startTime: '14:00',
-    endTime: '17:00',
+    timeSlot: 'afternoon',
     location: 'Lab Créatif',
     status: 'upcoming',
     hasSignedPresence: false,
@@ -35,8 +33,7 @@ const studentUpcomingSessions: StudentTrainingSession[] = [
     title: 'Certification JavaScript',
     trainer: 'Jean Formateur',
     date: '2024-01-22',
-    startTime: '10:00',
-    endTime: '12:00',
+    timeSlot: 'morning',
     location: 'Salle B',
     status: 'completed',
     hasSignedPresence: true,
@@ -46,8 +43,7 @@ const studentUpcomingSessions: StudentTrainingSession[] = [
     title: 'Formation Base de Données',
     trainer: 'Paul Expert',
     date: '2024-01-15',
-    startTime: '09:00',
-    endTime: '16:00',
+    timeSlot: 'full-day',
     location: 'Salle C',
     status: 'completed',
     hasSignedPresence: false,
@@ -84,6 +80,19 @@ export const StudentCalendar = () => {
         return 'Absent';
       default:
         return 'Inconnue';
+    }
+  };
+
+  const getTimeSlotLabel = (timeSlot: 'morning' | 'afternoon' | 'full-day') => {
+    switch (timeSlot) {
+      case 'morning':
+        return 'Matin (09h00-12h00)';
+      case 'afternoon':
+        return 'Après-midi (14h00-17h00)';
+      case 'full-day':
+        return 'Journée complète (09h00-17h00)';
+      default:
+        return timeSlot;
     }
   };
 
@@ -170,7 +179,7 @@ export const StudentCalendar = () => {
                     </span>
                     <span className="flex items-center">
                       <Clock className="mr-1 h-3 w-3" />
-                      {session.startTime}-{session.endTime}
+                      {getTimeSlotLabel(session.timeSlot)}
                     </span>
                   </div>
                   <p className="text-xs text-gray-500 mt-1">
