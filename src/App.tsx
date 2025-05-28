@@ -14,6 +14,7 @@ import Alerts from "./pages/Alerts";
 import Sessions from "./pages/Sessions";
 import StudentSessions from "./pages/StudentSessions";
 import TrainerSessions from "./pages/TrainerSessions";
+import TimeTracking from "./pages/TimeTracking";
 import Users from "./pages/Users";
 import Messages from "./pages/Messages";
 import Participants from "./pages/Participants";
@@ -61,6 +62,11 @@ const App = () => (
             <Route path="/trainer-sessions" element={
               <AuthGuard>
                 <TrainerSessions />
+              </AuthGuard>
+            } />
+            <Route path="/time-tracking" element={
+              <AuthGuard>
+                <TimeTracking />
               </AuthGuard>
             } />
             <Route path="/users" element={
