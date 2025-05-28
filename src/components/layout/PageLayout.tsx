@@ -1,89 +1,38 @@
 
 import React from 'react';
-import { useAuth } from '@/contexts/AuthContext';
-import { Button } from '@/components/ui/button';
-import { Check } from 'lucide-react';
-import { toast } from '@/hooks/use-toast';
+import { AppSidebar } from '@/components/app-sidebar';
+import { SidebarProvider, SidebarTrigger } from '@/components/ui/sidebar';
 
 interface PageLayoutProps {
+  children: React.ReactNode;
   title: string;
   subtitle?: string;
-  children: React.ReactNode;
 }
 
-export const PageLayout: React.FC<PageLayoutProps> = ({ title, subtitle, children }) => {
-  const { user, logout } = useAuth();
-
-  const handleLogout = () => {
-    logout();
-    toast({
-      title: "Déconnexion",
-      description: "Vous avez été déconnecté avec succès",
-    });
-  };
-
-  const getRoleLabel = (role: string) => {
-    switch (role) {
-      case 'admin':
-        return 'Administrateur';
-      case 'formateur':
-        return 'Formateur';
-      case 'apprenant':
-        return 'Apprenant';
-      case 'gestionnaire_administratif':
-        return 'Gestionnaire';
-      default:
-        return role;
-    }
-  };
-
+export function PageLayout({ children, title, subtitle }: PageLayoutProps) {
   return (
-    <div className="min-h-screen bg-gray-50">
-      {/* Header */}
-      <header className="bg-white border-b border-gray-200">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-16">
-            {/* Logo */}
-            <div className="flex items-center">
-              <div className="flex items-center">
-                <div className="inline-flex items-center justify-center w-8 h-8 bg-blue-600 rounded-lg mr-3">
-                  <Check className="w-5 h-5 text-white" />
+    <SidebarProvider>
+      <div className="min-h-screen flex w-full">
+        <AppSidebar />
+        <main className="flex-1 flex flex-col overflow-hidden">
+          <header className="bg-white border-b border-gray-200 px-6 py-4">
+            <div className="flex items-center justify-between">
+              <div className="flex items-center space-x-4">
+                <SidebarTrigger className="text-gray-500 hover:text-gray-700" />
+                <div>
+                  <h1 className="text-2xl font-bold text-gray-900">{title}</h1>
+                  {subtitle && (
+                    <p className="text-sm text-gray-600 mt-1">{subtitle}</p>
+                  )}
                 </div>
-                <span className="text-xl font-bold text-gray-900">Innovasign Pro</span>
               </div>
             </div>
-
-            {/* User info and logout */}
-            <div className="flex items-center space-x-4">
-              <div className="text-right">
-                <p className="text-sm font-medium text-gray-900">
-                  {user?.firstName} {user?.lastName}
-                </p>
-                <p className="text-xs text-gray-500">
-                  {user?.role && getRoleLabel(user.role)}
-                </p>
-              </div>
-              <Button variant="outline" onClick={handleLogout}>
-                Déconnexion
-              </Button>
-            </div>
+          </header>
+          <div className="flex-1 overflow-y-auto p-6">
+            {children}
           </div>
-        </div>
-      </header>
-
-      {/* Main content */}
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        {/* Page header */}
-        <div className="mb-8">
-          <h1 className="text-3xl font-bold text-gray-900">{title}</h1>
-          {subtitle && (
-            <p className="mt-2 text-gray-600">{subtitle}</p>
-          )}
-        </div>
-
-        {/* Page content */}
-        {children}
-      </main>
-    </div>
+        </main>
+      </div>
+    </SidebarProvider>
   );
-};
+}
