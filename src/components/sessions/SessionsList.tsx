@@ -30,8 +30,7 @@ export const SessionsList = () => {
                 ...session.signatureRequests,
                 {
                   period,
-                  sentAt: new Date().toISOString(),
-                  status: 'sent' as const
+                  requestedAt: new Date().toISOString()
                 }
               ]
             }

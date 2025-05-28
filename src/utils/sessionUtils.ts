@@ -1,13 +1,13 @@
 
-import { Session, AttendanceRecord } from '@/types/Session';
+import { Session, AttendanceStats } from '@/types/Session';
 
-export const getStatusColor = (status: string) => {
+export const getStatusColor = (status: Session['status']) => {
   switch (status) {
-    case 'completed':
-      return 'bg-green-100 text-green-800';
-    case 'in-progress':
-      return 'bg-blue-100 text-blue-800';
     case 'scheduled':
+      return 'bg-blue-100 text-blue-800';
+    case 'in-progress':
+      return 'bg-green-100 text-green-800';
+    case 'completed':
       return 'bg-gray-100 text-gray-800';
     case 'cancelled':
       return 'bg-red-100 text-red-800';
@@ -16,23 +16,28 @@ export const getStatusColor = (status: string) => {
   }
 };
 
-export const getStatusLabel = (status: string) => {
+export const getStatusLabel = (status: Session['status']) => {
   switch (status) {
-    case 'completed':
-      return 'Terminée';
-    case 'in-progress':
-      return 'En cours';
     case 'scheduled':
       return 'Programmée';
+    case 'in-progress':
+      return 'En cours';
+    case 'completed':
+      return 'Terminée';
     case 'cancelled':
       return 'Annulée';
     default:
-      return 'Inconnue';
+      return status;
   }
 };
 
 export const formatDate = (dateString: string) => {
-  return new Date(dateString).toLocaleDateString('fr-FR');
+  return new Date(dateString).toLocaleDateString('fr-FR', {
+    weekday: 'long',
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric'
+  });
 };
 
 export const formatTime = (timeString: string) => {
@@ -40,35 +45,22 @@ export const formatTime = (timeString: string) => {
 };
 
 export const isSignatureRequestSent = (session: Session, period: 'morning' | 'afternoon') => {
-  return session.signatureRequests.some(
-    request => request.period === period && request.status === 'sent'
-  );
+  return session.signatureRequests.some(request => request.period === period);
 };
 
-export const getAttendanceStats = (session: Session) => {
-  const morning = { present: 0, late: 0, absent: 0 };
-  const afternoon = { present: 0, late: 0, absent: 0 };
+export const getAttendanceStats = (session: Session): AttendanceStats => {
+  const stats: AttendanceStats = {
+    morning: { present: 0, late: 0, absent: 0 },
+    afternoon: { present: 0, late: 0, absent: 0 }
+  };
 
   session.attendanceTracking.forEach(record => {
-    const period = record.period === 'morning' ? morning : afternoon;
-    switch (record.status) {
-      case 'present':
-        period.present++;
-        break;
-      case 'late':
-        period.late++;
-        break;
-      case 'absent':
-        period.absent++;
-        break;
+    if (record.period === 'morning') {
+      stats.morning[record.status]++;
+    } else {
+      stats.afternoon[record.status]++;
     }
   });
 
-  return { morning, afternoon };
-};
-
-export const getParticipantName = (participantId: string) => {
-  // Cette fonction sera utilisée pour récupérer le nom d'un participant
-  // Pour l'instant, on retourne l'ID, mais cela pourrait être étendu avec une vraie base de données
-  return `Participant ${participantId}`;
+  return stats;
 };

@@ -12,50 +12,47 @@ export const demoSessions: Session[] = [
     id: '1',
     title: 'Formation React Avancé',
     description: 'Formation approfondie sur React avec hooks, context et performance',
+    instructor: 'Marie Formatrice',
+    instructorId: '2',
     startDate: '2024-01-15',
     endDate: '2024-01-15',
     startTime: '09:00',
     endTime: '17:00',
+    participants: ['3', '5', '6', '7'],
+    maxParticipants: 20,
     location: 'Salle A1',
     status: 'in-progress',
-    participants: ['3', '5', '6', '7'],
+    signatures: [
+      { participantId: '3', participantName: 'Pierre Dupont', signedAt: '2024-01-15T09:05:00Z', period: 'morning' },
+    ],
     attendanceTracking: [
-      {
-        participantId: '3',
-        period: 'morning',
-        status: 'present',
-        timestamp: '2024-01-15T09:05:00Z'
-      },
-      {
-        participantId: '5',
-        period: 'morning',
-        status: 'late',
-        lateMinutes: 15,
-        timestamp: '2024-01-15T09:15:00Z'
-      }
+      { participantId: '3', participantName: 'Pierre Dupont', status: 'present', period: 'morning', recordedAt: '2024-01-15T09:05:00Z' },
+      { participantId: '5', participantName: 'Lucas Petit', status: 'late', lateMinutes: 15, period: 'morning', recordedAt: '2024-01-15T09:15:00Z' },
     ],
     signatureRequests: [
-      {
-        period: 'morning',
-        sentAt: '2024-01-15T08:30:00Z',
-        status: 'sent'
-      }
-    ]
+      { period: 'morning', requestedAt: '2024-01-15T08:30:00Z' }
+    ],
+    createdAt: '2024-01-10T10:00:00Z',
   },
   {
     id: '3',
     title: 'Workshop UX/UI Design',
     description: 'Atelier pratique sur les principes de design UX/UI',
+    instructor: 'Marie Formatrice',
+    instructorId: '2',
     startDate: '2024-01-16',
     endDate: '2024-01-16',
     startTime: '14:00',
     endTime: '18:00',
+    participants: ['3', '5', '6'],
+    maxParticipants: 12,
     location: 'Lab Design',
     status: 'scheduled',
-    participants: ['3', '5', '6'],
+    signatures: [],
     attendanceTracking: [],
-    signatureRequests: []
-  }
+    signatureRequests: [],
+    createdAt: '2024-01-08T16:00:00Z',
+  },
 ];
 
 export const availableParticipants: Participant[] = [
