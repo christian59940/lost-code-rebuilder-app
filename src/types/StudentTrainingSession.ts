@@ -9,4 +9,5 @@ export interface StudentTrainingSession {
   location: string;
   status: 'upcoming' | 'completed' | 'absent' | 'present';
   description?: string;
+  hasSignedPresence?: boolean;
 }
