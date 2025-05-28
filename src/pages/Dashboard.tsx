@@ -21,6 +21,7 @@ import {
 import { useNavigate } from 'react-router-dom';
 import { toast } from '@/hooks/use-toast';
 import { StudentCalendar } from '@/components/profile/StudentCalendar';
+import { TrainerCalendar } from '@/components/profile/TrainerCalendar';
 
 // Données de démonstration pour le dashboard
 const dashboardData = {
@@ -631,22 +632,19 @@ const Dashboard = () => {
         {(user?.role === 'formateur' || user?.role === 'gestionnaire_administratif') && (
           <>
             <TabsContent value="my-sessions" className="space-y-6">
-              <Card>
-                <CardHeader>
-                  <CardTitle>
-                    {user?.role === 'formateur' ? 'Mes Sessions' : 'Sessions à Gérer'}
-                  </CardTitle>
-                  <CardDescription>
-                    {user?.role === 'formateur' 
-                      ? 'Gérez vos sessions de formation' 
-                      : 'Supervisez les sessions de formation'
-                    }
-                  </CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-gray-600">Interface de gestion des sessions à venir...</p>
-                </CardContent>
-              </Card>
+              {user?.role === 'formateur' ? (
+                <TrainerCalendar />
+              ) : (
+                <Card>
+                  <CardHeader>
+                    <CardTitle>Sessions à Gérer</CardTitle>
+                    <CardDescription>Supervisez les sessions de formation</CardDescription>
+                  </CardHeader>
+                  <CardContent>
+                    <p className="text-gray-600">Interface de gestion des sessions à venir...</p>
+                  </CardContent>
+                </Card>
+              )}
             </TabsContent>
 
             <TabsContent value="signatures" className="space-y-6">
