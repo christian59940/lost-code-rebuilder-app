@@ -1,61 +1,66 @@
 
 import { Session } from '@/types/Session';
 
-export const availableParticipants = [
-  { id: '1', name: 'Pierre Martin' },
-  { id: '2', name: 'Marie Dupont' },
-  { id: '3', name: 'Jean Durand' },
-  { id: '4', name: 'Sophie Bernard' },
-  { id: '5', name: 'Luc Moreau' },
-];
+export interface Participant {
+  id: string;
+  name: string;
+  email: string;
+}
 
 export const demoSessions: Session[] = [
   {
-    id: 'session-demo-1',
+    id: '1',
     title: 'Formation React Avancé',
-    description: 'Approfondissement des concepts React avec hooks et context',
-    startDate: '2025-06-15',
-    endDate: '2025-06-15',
+    description: 'Formation approfondie sur React avec hooks, context et performance',
+    startDate: '2024-01-15',
+    endDate: '2024-01-15',
     startTime: '09:00',
     endTime: '17:00',
-    location: 'Salle A - Paris',
+    location: 'Salle A1',
     status: 'in-progress',
-    participants: ['1', '2', '3', '4'],
+    participants: ['3', '5', '6', '7'],
     attendanceTracking: [
       {
-        participantId: '1',
+        participantId: '3',
         period: 'morning',
         status: 'present',
-        timestamp: '2025-06-15T09:00:00Z'
+        timestamp: '2024-01-15T09:05:00Z'
       },
       {
-        participantId: '2',
+        participantId: '5',
         period: 'morning',
         status: 'late',
         lateMinutes: 15,
-        timestamp: '2025-06-15T09:15:00Z'
+        timestamp: '2024-01-15T09:15:00Z'
       }
     ],
     signatureRequests: [
       {
         period: 'morning',
-        sentAt: '2025-06-15T12:00:00Z',
+        sentAt: '2024-01-15T08:30:00Z',
         status: 'sent'
       }
     ]
   },
   {
-    id: 'session-demo-2',
+    id: '3',
     title: 'Workshop UX/UI Design',
-    description: 'Atelier pratique de design d\'interface utilisateur',
-    startDate: '2025-06-22',
-    endDate: '2025-06-22',
+    description: 'Atelier pratique sur les principes de design UX/UI',
+    startDate: '2024-01-16',
+    endDate: '2024-01-16',
     startTime: '14:00',
-    endTime: '17:00',
-    location: 'Salle B - Lyon',
+    endTime: '18:00',
+    location: 'Lab Design',
     status: 'scheduled',
-    participants: ['2', '3', '5'],
+    participants: ['3', '5', '6'],
     attendanceTracking: [],
     signatureRequests: []
   }
+];
+
+export const availableParticipants: Participant[] = [
+  { id: '3', name: 'Pierre Dupont', email: 'pierre.dupont@example.com' },
+  { id: '5', name: 'Lucas Petit', email: 'lucas.petit@example.com' },
+  { id: '6', name: 'Emma Rousseau', email: 'emma.rousseau@example.com' },
+  { id: '7', name: 'Sophie Martin', email: 'sophie.martin@example.com' },
 ];

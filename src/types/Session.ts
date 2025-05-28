@@ -27,3 +27,9 @@ export interface SignatureRequest {
   sentAt: string;
   status: 'sent' | 'signed' | 'expired';
 }
+
+export interface Participant {
+  id: string;
+  name: string;
+  email: string;
+}
