@@ -1,9 +1,12 @@
 
 import { useState } from 'react';
 import { SessionCard } from './SessionCard';
+import { SessionActions } from './SessionActions';
 import { Session } from '@/types/Session';
 import { demoSessions } from '@/data/sessionData';
 import { useToast } from '@/hooks/use-toast';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Badge } from '@/components/ui/badge';
 
 export const SessionsList = () => {
   const [sessions, setSessions] = useState<Session[]>(demoSessions);
@@ -20,7 +23,6 @@ export const SessionsList = () => {
   const handleSignatureRequest = (sessionId: string, period: 'morning' | 'afternoon') => {
     console.log('Demande de signature pour:', sessionId, period);
     
-    // Simuler l'envoi de la demande de signature
     setSessions(prev => 
       prev.map(session => 
         session.id === sessionId 
@@ -44,6 +46,36 @@ export const SessionsList = () => {
     });
   };
 
+  const getStatusColor = (status: string) => {
+    switch (status) {
+      case 'scheduled':
+        return 'bg-blue-100 text-blue-800';
+      case 'in-progress':
+        return 'bg-green-100 text-green-800';
+      case 'completed':
+        return 'bg-gray-100 text-gray-800';
+      case 'cancelled':
+        return 'bg-red-100 text-red-800';
+      default:
+        return 'bg-gray-100 text-gray-800';
+    }
+  };
+
+  const getStatusLabel = (status: string) => {
+    switch (status) {
+      case 'scheduled':
+        return 'Programmée';
+      case 'in-progress':
+        return 'En cours';
+      case 'completed':
+        return 'Terminée';
+      case 'cancelled':
+        return 'Annulée';
+      default:
+        return status;
+    }
+  };
+
   return (
     <div className="space-y-6">
       <div>
@@ -53,12 +85,30 @@ export const SessionsList = () => {
       
       <div className="space-y-4">
         {sessions.map((session) => (
-          <SessionCard
-            key={session.id}
-            session={session}
-            onAttendanceManagement={handleAttendanceManagement}
-            onSignatureRequest={handleSignatureRequest}
-          />
+          <Card key={session.id} className="p-4">
+            <div className="flex items-start justify-between">
+              <div className="flex-1">
+                <div className="flex items-center space-x-2 mb-2">
+                  <h4 className="font-medium text-lg">{session.title}</h4>
+                  <Badge className={getStatusColor(session.status)}>
+                    {getStatusLabel(session.status)}
+                  </Badge>
+                </div>
+                <p className="text-gray-600 mb-2">{session.description}</p>
+                <p className="text-sm text-gray-500">
+                  {session.instructor} • {session.startDate} • {session.startTime} - {session.endTime} • {session.location}
+                </p>
+                <p className="text-sm text-gray-500">
+                  {session.participants.length}/{session.maxParticipants} participants
+                </p>
+              </div>
+              <SessionActions 
+                sessionId={session.id}
+                sessionTitle={session.title}
+                status={session.status}
+              />
+            </div>
+          </Card>
         ))}
       </div>
     </div>
