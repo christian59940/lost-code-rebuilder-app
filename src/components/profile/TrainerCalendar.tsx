@@ -16,7 +16,7 @@ export const TrainerCalendar = () => {
       startTime: '09:00',
       endTime: '12:00',
       location: 'Salle A - Paris',
-      participants: 12,
+      participants: ['user1', 'user2', 'user3', 'user4', 'user5', 'user6', 'user7', 'user8', 'user9', 'user10', 'user11', 'user12'],
       maxParticipants: 15,
       status: 'confirmed',
       trainer: 'Marie Formatrice',
@@ -29,7 +29,7 @@ export const TrainerCalendar = () => {
       startTime: '14:00',
       endTime: '17:00',
       location: 'Salle B - Paris',
-      participants: 8,
+      participants: ['user1', 'user2', 'user3', 'user4', 'user5', 'user6', 'user7', 'user8'],
       maxParticipants: 10,
       status: 'confirmed',
       trainer: 'Marie Formatrice',
@@ -42,7 +42,7 @@ export const TrainerCalendar = () => {
       startTime: '09:00',
       endTime: '17:00',
       location: 'Salle C - Lyon',
-      participants: 15,
+      participants: ['user1', 'user2', 'user3', 'user4', 'user5', 'user6', 'user7', 'user8', 'user9', 'user10', 'user11', 'user12', 'user13', 'user14', 'user15'],
       maxParticipants: 20,
       status: 'upcoming',
       trainer: 'Marie Formatrice',
@@ -55,7 +55,7 @@ export const TrainerCalendar = () => {
       startTime: '09:00',
       endTime: '12:00',
       location: 'Salle A - Paris',
-      participants: 10,
+      participants: ['user1', 'user2', 'user3', 'user4', 'user5', 'user6', 'user7', 'user8', 'user9', 'user10'],
       maxParticipants: 12,
       status: 'upcoming',
       trainer: 'Marie Formatrice',
@@ -68,7 +68,7 @@ export const TrainerCalendar = () => {
       startTime: '14:00',
       endTime: '17:00',
       location: 'Salle A - Paris',
-      participants: 10,
+      participants: ['user1', 'user2', 'user3', 'user4', 'user5', 'user6', 'user7', 'user8', 'user9', 'user10'],
       maxParticipants: 12,
       status: 'upcoming',
       trainer: 'Marie Formatrice',
@@ -163,7 +163,7 @@ export const TrainerCalendar = () => {
                           {session.startTime} - {session.endTime}
                         </div>
                         <p>📍 {session.location}</p>
-                        <p>👥 {session.participants} participants</p>
+                        <p>👥 {session.participants.length} participants</p>
                       </div>
                     </div>
                   ))}
