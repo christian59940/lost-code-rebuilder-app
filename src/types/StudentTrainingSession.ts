@@ -13,4 +13,5 @@ export interface StudentTrainingSession {
   willBeAbsent?: boolean;
   canJustifyAbsence?: boolean;
   justificationDocument?: string;
+  timeSlot?: 'morning' | 'afternoon' | 'full-day';
 }
