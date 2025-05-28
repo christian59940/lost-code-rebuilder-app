@@ -13,6 +13,7 @@ import {
 import { DashboardStats } from '@/components/dashboard/DashboardStats';
 import { SessionsOverview } from '@/components/dashboard/SessionsOverview';
 import { AttendanceStats } from '@/components/dashboard/AttendanceStats';
+import { QuickHelp } from '@/components/dashboard/QuickHelp';
 import { 
   AdminTabContent, 
   StudentTabContent, 
@@ -54,6 +55,10 @@ const Dashboard = () => {
             />
 
             <AttendanceStats userStats={userStats} userRole={user?.role} />
+          </div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            <QuickHelp />
           </div>
         </TabsContent>
 
